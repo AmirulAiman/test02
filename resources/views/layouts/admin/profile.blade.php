@@ -16,12 +16,15 @@
         <h5 class="panel-title">Detail</h5>
     </div>
     <div class="panel-body">
+    @if(Session::has('msg'))
+        <h4 class="text-{{ Session::get(done) === true ? 'success' : 'danger' }}">{{ Session::get('msg') }}</h4>
+    @endif
         <h5><b>Email :</b> {{$profile->email }}</h5>
         <h5><b>Last Login :</b> {{ $profile->last_login }}</h5>
     </div>
     <div class="panel-footer">
         <div class="col-md-offset-11">
-            <a class="btn btn-warning" href="#">Edit</a>
+            <a class="btn btn-warning" href="{{ route('admin.edit',['id' => $profile->id ] ) }}">Edit</a>
         </div>
     </div>
     </div>

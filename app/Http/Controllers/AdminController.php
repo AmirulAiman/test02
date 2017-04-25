@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
+use Validator;
 use Carbon\Carbon;
 
 use App\User;
@@ -73,5 +74,46 @@ class AdminController extends Controller
     public function Delete($id)
     {
         echo 'Delete : '.$id;
+    }
+
+    public function edit($id)
+    {
+        $find = User::find($id);
+        return view('layouts.admin.edit',['profile' => $eidt]);
+    }
+
+    public function save(Request $req,$id)
+    {
+        $edit = User::find($id);
+
+        if($edit){
+            $validate = Validator::make($req->all(),[
+                'email' => 'required|email',
+                'password' => 'required|confirmed',
+                'password_confirmation' => 'required'
+            ]);
+
+            if($validate->fails())
+            {
+                return redirect()
+                ->back()
+                ->withInput()
+                ->withError($validate);
+            }
+
+            $email = $req['email'];
+            $password = $req['password'];
+
+            $edit->email = $email;
+            $dit->password = $password;
+            $edit->save();
+        }else{
+
+            return redirect()
+            ->route('admin.profile',['msg' => 'Edit failed.User not found(Are you sure YOU an admin?).','done' => false ]);
+        }
+
+        return redirect()
+        ->route('admin.profile',['msg' => 'Edit success.','done' => true ]);
     }
 }

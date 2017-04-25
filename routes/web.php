@@ -68,6 +68,17 @@ Route::group(['middleware' => ['web']],function(){
             'as' => 'admin.delete'
         ]);
 
+        Route::get('/edit/{$id}',[
+            'uses' => 'AdminController@edit',
+            'as' => 'admin.edit'
+        ]);
+           
+        
+        Route::post('/edit/{$id}',[
+            'uses' => 'AdminController@save',
+            'as' => 'admin.save'
+        ]);
+           
 
     });
     

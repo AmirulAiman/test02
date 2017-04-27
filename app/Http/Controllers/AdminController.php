@@ -13,6 +13,7 @@ use App\UserDetail;
 use App\UserAddress;
 use App\UserCompanyDetail;
 use App\UserProfileImg;
+use App\UserHistory;
 
 class AdminController extends Controller
 {
@@ -79,7 +80,7 @@ class AdminController extends Controller
     public function edit($id)
     {
         $find = User::find($id);
-        return view('layouts.admin.edit',['profile' => $eidt]);
+        return view('layouts.admin.edit',['profile' => $find]);
     }
 
     public function save(Request $req,$id)
@@ -98,15 +99,15 @@ class AdminController extends Controller
                 return redirect()
                 ->back()
                 ->withInput()
-                ->withError($validate);
+                ->withErrors($validate);
             }
 
             $email = $req['email'];
             $password = $req['password'];
 
             $edit->email = $email;
-            $dit->password = $password;
-            $edit->save();
+            $edit->password = bcrypt($password);
+            $edit->save();;
         }else{
 
             return redirect()

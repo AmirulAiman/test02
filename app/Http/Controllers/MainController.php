@@ -303,7 +303,7 @@ class MainController extends Controller
         $company->company_name = $comp_name;
         $company->company_email = $comp_email;
         $company->company_tel_no = $comp_tel_no;
-        $company->comp_img = $comp_pic;
+        $company->comp_image = $comp_pic;
         $company->file_type = $comp_file_type;
         $detail->UserCompanyDetail()->save($company);
 

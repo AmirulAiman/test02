@@ -17,7 +17,7 @@
     </div>
     <div class="panel-body">
     @if(Session::has('msg'))
-        <h4 class="text-{{ Session::get(done) === true ? 'success' : 'danger' }}">{{ Session::get('msg') }}</h4>
+        <h4 class="">{{ Session::get('msg') }}</h4>
     @endif
         <h5><b>Email :</b> {{$profile->email }}</h5>
         <h5><b>Last Login :</b> {{ $profile->last_login }}</h5>

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserHistory extends Model
 {
-    public function UserDetail()
+    public function UserDetails()
     {
         return $this->belongsTo('App\UserDetail');
     }

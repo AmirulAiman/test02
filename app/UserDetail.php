@@ -32,7 +32,7 @@ class UserDetail extends Model
         return $this->hasMany('App\UserOrder');
     }
 
-    public function UserHistory()
+    public function UserHistories()
     {
         return $this->hasOne('App\UserHistory');
     }

@@ -59,6 +59,11 @@ class MainController extends Controller
 
           if($curr_user){
 
+                if($curr_user->user_type != 0){
+                    $activate = UserDetail::where('user_id',$curr_user->id)->first();
+                    $activate->account_state = 1;
+                    $activate->save();
+                }
                 if($curr_user->user_type === 1){
                     return redirect()->route('user.dashboard');
                 }else if($curr_user->user_type === 2){

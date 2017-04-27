@@ -28,8 +28,8 @@
                         <tr>
                             <td>1</td>
                             <td>{{ $lists[$i]->UserDetails->name }}</td>
-                            <td>{{ $lists[$i]->email }}</td>
-                            <td>{{ $lists[$i]->UserDetails->tel_no }}</td>
+                            <td>{{ $lists[$i]->UserDetails->UserCompanyDetail->company_name }}</td>
+                            <td>{{ $lists[$i]->UserDetails->UserAddress->state }}</td>
                             <td>{{ ($lists[$i]->UserDetails->account_state === 0 ? 'Inactive' : 'Active') }}</td>
                             <td>
                                 <button class="btn btn-info" type="button" data-toggle="modal" data-target="#{{ $lists[$i]->id }}">

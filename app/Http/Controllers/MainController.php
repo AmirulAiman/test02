@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Events\LoginEvent;
+use Illuminate\Support\Facades\Event;
 
 use App\User;
 use App\UserDetail;
@@ -59,6 +61,10 @@ class MainController extends Controller
 
           if($curr_user){
 
+              //Init event handler.
+                Event::fire($curr_user);
+
+                //Change account state for new user -> active;
                 if($curr_user->user_type != 0){
                     $activate = UserDetail::where('user_id',$curr_user->id)->first();
                     $activate->account_state = 1;

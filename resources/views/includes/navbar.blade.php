@@ -26,7 +26,7 @@
 
         @elseif(Auth::check() && Auth::user()->user_type === 1)
             <li class="@yield('user.dashboard')"><a href="{{route('user.dashboard') }}">Dashboard</a></li>
-            <li><a href="#">List T-shirt Company</a></li>
+            <li class="@yield('user.List')"><a href=" {{ route('user.list')}}">List T-shirt Company</a></li>
             <li><a href="#">Previous Activity</a></li>
             <!--<li><a href="#">List T-shirt Company</a></li>-->
 

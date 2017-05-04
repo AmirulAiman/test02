@@ -18,7 +18,7 @@
             <label class="panel-title">New T-shirt service request</label>
         </div>
         <div class="panel-body">
-            <table class="table-horizontal">
+            <table class="table table-horizontal table-striped">
                 <thead>
                     <tr>
                         <td>#</td>
@@ -31,6 +31,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
                         <td>1</td>
                         <td>User 01</td>
                         <td>50 plain t-shirt as shown</td>
@@ -39,6 +40,7 @@
                         <td>
                             <button type="button" class="btn btn-info">Detail</button>
                         </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

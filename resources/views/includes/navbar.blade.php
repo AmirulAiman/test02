@@ -12,14 +12,6 @@
       <ul class="nav navbar-nav">
         <li class="@yield('home')"><a href="{{ route('main.home') }}">Home</a></li>
         @if(Auth::check() && Auth::user()->user_type === 0)
-            <!--<li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">View List
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                <li><a href="#">Users</a></li>
-                <li><a href="#">Companies</a></li>
-                </ul>
-            </li>-->
             <li class="@yield('admin.dashboard')"><a href="{{route('admin.dashboard') }}">Dashboard</a></li>
             <li class="@yield('admin.userslist')"><a href="{{ route('admin.list.users') }}">User List</a></li>
             <li class="@yield('admin.companylist')"><a href="{{ route('admin.list.company')}}">Company List</a></li>

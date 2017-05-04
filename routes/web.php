@@ -10,7 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => ['web']],function(){
+
+use App\Http\Middleware\Authenticate;
+
+//Route::group(['middleware' => ['web']],function(){
     
     Route::get('/',[
         'uses' => 'MainController@Home',
@@ -89,12 +92,27 @@ Route::group(['middleware' => ['web']],function(){
             'as' => 'user.dashboard'
         ]);
         
+        Route::get('/list',[
+            'uses' => 'UserController@lists',
+            'as' => 'user.list'
+        ]);
+
+        Route::get('/request/{id}',[
+            'uses' => 'UserController@make',
+            'as' => 'user.order'
+        ]);
+
+        Route::post('/request',[
+            'uses' => 'UserController@record',
+            'as' => 'user.order.record'
+        ]);
+
         Route::get('/profile',[
             'uses' => 'UserController@profile',
             'as' => 'user.profile'
         ]);
                 
-        Route::get('/edit/{$id}',[
+        Route::get('/edit/{id}',[
             'uses' => 'UserController@edit',
             'as' => 'user.edit'
         ]);
@@ -139,4 +157,4 @@ Route::group(['middleware' => ['web']],function(){
         'uses' => 'MainController@Logout',
         'as' => 'main.logout'
     ]);
-});
+//});

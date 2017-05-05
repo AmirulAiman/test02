@@ -28,6 +28,13 @@ class AdminController extends Controller
     */
     public function dashboard()
     {
+        if(!Auth::check())
+        {
+            return redirect()
+            ->route('main.home')
+            ->with(['msg','You need to login to continue.']);
+        }
+
         $total = User::where('user_type','!=','0')->count();
         $num_company = User::where('user_type','=','2')->count();
         $num_user = User::where('user_type','=','1')->count();
@@ -46,12 +53,26 @@ class AdminController extends Controller
 
     public function profile()
     {
+        if(!Auth::check())
+        {
+            return redirect()
+            ->route('main.home')
+            ->with(['msg','You need to login to continue.']);
+        }
+
         $profile = Auth::user();
         return view('layouts.admin.profile',['profile' => $profile]);
     }
 
     public function users()
     {
+        if(!Auth::check())
+        {
+            return redirect()
+            ->route('main.home')
+            ->with(['msg','You need to login to continue.']);
+        }
+
         $lists = User::where('user_type',1)->paginate(10);
         $isUserList = true;
 
@@ -61,6 +82,13 @@ class AdminController extends Controller
 
     public function company()
     {
+        if(!Auth::check())
+        {
+            return redirect()
+            ->route('main.home')
+            ->with(['msg','You need to login to continue.']);
+        }
+
         $lists = User::where('user_type',2)->paginate(10);
         $isCompList = true;
         return view('layouts.admin.company_list')
@@ -74,17 +102,38 @@ class AdminController extends Controller
 
     public function Delete($id)
     {
+        if(!Auth::check())
+        {
+            return redirect()
+            ->route('main.home')
+            ->with(['msg','You need to login to continue.']);
+        }
+
         echo 'Delete : '.$id;
     }
 
     public function edit($id)
     {
+        if(!Auth::check())
+        {
+            return redirect()
+            ->route('main.home')
+            ->with(['msg','You need to login to continue.']);
+        }
+
         $find = User::find($id);
         return view('layouts.admin.edit',['profile' => $find]);
     }
 
     public function save(Request $req,$id)
     {
+        if(!Auth::check())
+        {
+            return redirect()
+            ->route('main.home')
+            ->with(['msg','You need to login to continue.']);
+        }
+
         $edit = User::find($id);
 
         if($edit){

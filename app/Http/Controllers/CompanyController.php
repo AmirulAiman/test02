@@ -23,7 +23,7 @@ class CompanyController extends Controller
             ->route('main.home')
             ->with(['msg','You need to login to continue.']);
         }
-        
+
         return view('layouts.company.dashboard');
     }
 
@@ -47,7 +47,7 @@ class CompanyController extends Controller
             ->route('main.home')
             ->with(['msg','You need to login to continue.']);
         }
-        return view('layouts.company.quest');
+        return view('layouts.company.request');
     }
 
     public function record()

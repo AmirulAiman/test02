@@ -6,6 +6,6 @@
 
 @section('content')
 @if(Session::has('msg'))
-    {{Session::get('msg')}}
+    {{ Session::get('msg') }}
 @endif
 @endsection

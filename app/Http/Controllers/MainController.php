@@ -229,7 +229,7 @@ class MainController extends Controller
             'owner_pic' => 'present|image',
             'comp_name' => 'required',
             'comp_pic' => 'present|image',
-            'comp_email' => 'email',
+            'comp_email' => 'present|email',
             'comp_tel_no' => 'required',
             'comp_service.*' => 'required',
             'address' => 'required',
@@ -288,7 +288,6 @@ class MainController extends Controller
         $detail = new UserDetail();
         $user_address = new UserAddress();
         $company = new UserCompanyDetail();
-        $service = new CompanyService();
         $profileImg = new UserProfileImg();
 
         $users->email = $email;
@@ -320,6 +319,7 @@ class MainController extends Controller
         $detail->UserCompanyDetail()->save($company);
 
         for($i = 0; $i < count($comp_service) ; $i++){
+            $service = new CompanyService();
             $service->services = $comp_service[$i];
             $company->CompanyServices()->save($service);
         }

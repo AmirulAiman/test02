@@ -132,6 +132,7 @@ class UserController extends Controller
             ->route('main.home')
             ->with(['msg','You need to login to continue.']);
         }
+        
         $get_info = UserCompanyDetail::find($id);
         return view('layouts.users.make_order',['requested' => $get_info]);
     }

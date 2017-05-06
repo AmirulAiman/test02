@@ -65,10 +65,6 @@ class MainController extends Controller
           $curr_user = User::where('email',$email)->first();
 
           if($curr_user){
-
-              //Init event handler.
-                Event::fire($curr_user);
-
                 //Change account state for new user -> active;
                 if($curr_user->user_type != 0){
                     $activate = UserDetail::where('user_id',$curr_user->id)->first();

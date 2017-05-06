@@ -64,6 +64,7 @@
                                                         {{ $lists[$i]->UserDetails->UserAddress->state }}.
                                                     </lagend><br>
                                                     </p>
+                                                    <p><legend>Last Login : {{ $lists[$i] -> last_login }}</legend></p>
                                                 </div>
                                                 </div>
                                             </div>

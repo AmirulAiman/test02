@@ -30,6 +30,11 @@ class MainController extends Controller
     {
         return view('main.list');
     }
+
+    public function LoginPage()
+    {
+        return view('layouts.main.login');
+    }
     public function Login(Request $req)
     {
         $msg = null;
@@ -228,7 +233,7 @@ class MainController extends Controller
             'owner_pic' => 'present|image',
             'comp_name' => 'required',
             'comp_pic' => 'present|image',
-            //'comp_email' => 'email',
+            'comp_email' => 'email',
             'comp_tel_no' => 'required',
             'comp_service.*' => 'required',
             'address' => 'required',
@@ -274,10 +279,10 @@ class MainController extends Controller
 
         //Manage company img file.
         if($req->hasFile('comp_pic')){
-            $temp = file_get_contents($req->file('comp_pic'));
-            $filePath = $req->file('comp_pic')->getRealPath();
-            $comp_file_type = pathInfo($filePath,PATHINFO_EXTENSION);
-            $comp_pic = base64_encode($temp);
+            $comp_temp = file_get_contents($req->file('comp_pic'));
+            $CompfilePath = $req->file('comp_pic')->getRealPath();
+            $comp_file_type = pathInfo($CompfilePath,PATHINFO_EXTENSION);
+            $comp_pic = base64_encode($comp_temp);
         }else{
             $comp_pic = null;
             $comp_file_type = null;

@@ -7,7 +7,7 @@
 @section('content')
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-label">List of Registered Users</h3>
+            <h3 class="panel-label">List of Registered Company</h3>
         </div>
         <div class="panel-body">
             @if(count($lists) > 0) 
@@ -45,24 +45,21 @@
                                             <div class="modal-body">
                                                <div class="media">
                                                 <div class="media-left">
-                                                @if($lists[$i]->UserDetails->UserProfileImg->profile_img == null)
-                                                    @if($lists[$i]->UserDetails->gender === 'male')
-                                                        <img src="{{ asset('img/boy.png') }}" class="media-object" style="width:160px">
-                                                    @else
-                                                        <img src="{{ asset('img/girl.png') }}" class="media-object" style="width:160px">
-                                                    @endif
+                                                @if($lists[$i]->UserDetails->UserCompanyDetail->comp_image === null)
+                                                    <img src="{{ asset('img/store.png') }}" class="media-object" style="width:160px">
                                                 @else
-                                                    <img alt="embedded image" src="data:image/{{ $lists[$i]->UserDetails->UserProfileImg->file_type }};base64,{{($lists[$i]->UserDetails->UserProfileImg->profile_img)}}" class="media-object" style="width:160px">
+                                                    <img alt="store image" src="data:image/{{ $lists[$i]->UserDetails->UserCompanyDetail->file_type }};base64,{{($lists[$i]->UserDetails->UserCompanyDetail->comp_img)}}" class="media-object" style="width:160px">
                                                 @endif
                                                 </div>
                                                 <div class="media-body">
-                                                    <h4 class="media-heading">{{ $lists[$i]->UserDetails->name }}</h4>
-                                                    <p><lagend>Gender : {{ $lists[$i]->UserDetails->gender }}</lagend><br>
-                                                    <lagend>Address : <br>
+                                                    <h4 class="media-heading">Name : {{ $lists[$i]->UserDetails->UserCompanyDetail->company_name }}</h4>
+                                                    <hr>
+                                                    <h4>Email : {{ ($lists[$i]->UserDetails->UserCompanyDetail->company_email == null) ? 'not available' : $lists[$i]->UserDetails->UserCompanyDetail->company_email }}</h4>
+                                                    <h4>Store Location : <br>
                                                         {{ $lists[$i]->UserDetails->UserAddress->address }},<br>
                                                         {{ $lists[$i]->UserDetails->UserAddress->postcode }},{{ $lists[$i]->UserDetails->UserAddress->city }},<br>
                                                         {{ $lists[$i]->UserDetails->UserAddress->state }}.
-                                                    </lagend><br>
+                                                    </h4><br>
                                                     </p>
                                                 </div>
                                                 </div>

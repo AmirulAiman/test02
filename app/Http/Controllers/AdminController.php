@@ -17,15 +17,6 @@ use App\UserHistory;
 
 class AdminController extends Controller
 {
-    /*
-    Next :
-    ->profile page : edit and modify admin content
-    ->delete function.
-    ->search function(ajax)
-    ->modify company list
-    -->show owner img when hover.
-    -->view model = show company img & animate.css(use).
-    */
     public function dashboard()
     {
         if(!Auth::check())

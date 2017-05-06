@@ -11,9 +11,7 @@
 |
 */
 
-use App\Http\Middleware\Authenticate;
-
-//Route::group(['middleware' => ['web']],function(){
+Route::group(['middleware' => ['web']],function(){
     
     Route::get('/',[
         'uses' => 'MainController@Home',
@@ -148,6 +146,12 @@ use App\Http\Middleware\Authenticate;
         
     });
     
+
+    Route::get('/login',[
+        'uses' => 'MainController@LoginPage',
+        'as' => 'main.signin'
+    ]);
+
     Route::post('/login',[
         'uses' => 'MainController@Login',
         'as' => 'main.login'
@@ -157,4 +161,4 @@ use App\Http\Middleware\Authenticate;
         'uses' => 'MainController@Logout',
         'as' => 'main.logout'
     ]);
-//});
+});

@@ -33,7 +33,7 @@
                     @foreach($requested->CompanyServices->all() as $service)
                     <div class="radio">
                         <label>
-                            <input type="radio" name="serviceRequested" id="optionsRadios1" value="{{ $service->id }}">
+                            <input type="radio" name="serviceRequested" id="optionsRadios1" value="{{ $service->services }}">
                             {{ $service->services }}
                         </label>
                         </div>
@@ -49,14 +49,21 @@
                 <div class="form-group">
                     <label for="img" class="col-lg-2 control-label">Design Image/Example</label>
                     <div class="col-lg-10">
-                        <input type="file" id="img" name="descriptionImg[]" multiple>
+                        <input class="form-control"  type="file" id="img" name="descriptionImg[]" multiple>
                         <p class="text-info">Select multiple file if you have more than a file to upload</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dueDate" class="col-lg-2 control-label">Due Date</label>
+                    <div class="col-lg-10">
+                        <input class="form-control"  type="date" id="dueDate" name="dueDate">
                     </div>
                 </div>
                 <hr>
                 <div class="col-lg-offset-5">
                     <input type="submit" class="btn btn-primary" value="submit">
                     <input type="hidden" name="_token" value="{{ Session::token() }}">
+                    <input type="hidden" name="comp_id" value="{{ $requested->id }}">
                 </div>
             </fieldset>
         </form>

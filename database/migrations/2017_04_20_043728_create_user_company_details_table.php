@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class CreateUserCompanyDetailsTable extends Migration
 {
@@ -19,12 +20,12 @@ class CreateUserCompanyDetailsTable extends Migration
             $table->string('company_name');
             $table->string('company_email',255)->nullable();
             $table->string('company_tel_no');
-            $table->binary('comp_image')->nullable();
             $table->string('file_type')->nullable();
             $table->timestamps();
 
             $table->foreign('user_detail_id')->references('id')->on('user_details');
         });
+        DB::statement("ALTER TABLE user_company_details ADD comp_img LONGBLOB AFTER company_tel_no");
     }
 
     /**

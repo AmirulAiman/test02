@@ -15,13 +15,14 @@ class CreateUserCompanyOrdersTable extends Migration
     {
         Schema::create('user_company_orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_detail_id');
+            //$table->integer('user_detail_id');
             $table->integer('company_detail_id');
             $table->integer('user_order_id');
             $table->timestamps();
             
-            $table->foreign('user_detail_id')->references('id')->on('user_details');
+            //$table->foreign('user_detail_id')->references('id')->on('user_details');
             $table->foreign('company_detail_id')->references('id')->on('user_company_details');
+            $table->foreign('user_order_id')->references('id')->on('user_order');
         });
     }
 

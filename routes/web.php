@@ -89,6 +89,11 @@ Route::group(['middleware' => ['web']],function(){
             'uses' => 'UserController@dashboard',
             'as' => 'user.dashboard'
         ]);
+
+        Route::get('/dashboard/delete/{id}',[
+            'uses' => 'UserController@delete_request',
+            'as' => 'user.order.delete'
+        ]);
         
         Route::get('/list',[
             'uses' => 'UserController@lists',
@@ -118,6 +123,11 @@ Route::group(['middleware' => ['web']],function(){
         Route::post('/edit/save',[
             'uses' => 'UserController@save',
             'as' => 'user.edit.save'
+        ]);
+
+        Route::get('/record',[
+            'uses' => 'UserController@history',
+            'as' => 'user.history'
         ]);
         
     });
@@ -152,7 +162,7 @@ Route::group(['middleware' => ['web']],function(){
         'as' => 'main.signin'
     ]);
 
-    Route::post('/login',[
+    Route::post('/login/signin',[
         'uses' => 'MainController@Login',
         'as' => 'main.login'
     ]);

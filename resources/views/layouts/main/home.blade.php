@@ -6,6 +6,6 @@
 
 @section('content')
 @if(Session::has('msg'))
-    {{ Session::get('msg') }}
+    <div class="text-center">{{ Session::get('msg') }}</div>
 @endif
 @endsection

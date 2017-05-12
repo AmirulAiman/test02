@@ -8,7 +8,12 @@ class UserOrder extends Model
 {
     public function UserDetails()
     {
-        return $this->belongsTo('App\UserDetail');
+        return $this->belongsTo('App\UserDetail','user_detail_id','id');
+    }
+
+    public function UserCompanyDetails()
+    {
+        return $this->belongsTo('App\UserCompanyDetail','company_detail_id','id');
     }
 
     public function UserOrderImgs()

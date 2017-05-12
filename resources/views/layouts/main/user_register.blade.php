@@ -19,20 +19,20 @@
     <div class="form-group">
       <label for="name" class="col-lg-2 control-label">Name</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" id="name" name="name" placeholder="Fullname" value="Amirul Aiman">
+        <input type="text" class="form-control" id="name" name="name" placeholder="Fullname" value="">
       </div>
     </div>
     <div class="form-group">
       <label for="gender" class="col-lg-2 control-label">Gender</label>
       <div class="col-lg-10">
-        <label class="radio-inline"><input type="radio" name="gender" value="male" checked="checked" >Male</label>
+        <label class="radio-inline"><input type="radio" name="gender" value="male">Male</label>
         <label class="radio-inline"><input type="radio" name="gender" value="female">Female</label>
       </div>
     </div>
     <div class="form-group">
       <label for="tel_no" class="col-lg-2 control-label">Contact No</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" id="tel_no" name="tel_no" placeholder="Contact number" value="0145047396">
+        <input type="text" class="form-control" id="tel_no" name="tel_no" placeholder="Contact number" value="">
       </div>
     </div>
     <div class="form-group">
@@ -45,44 +45,44 @@
     <div class="form-group">
         <label for="address" class="col-lg-2 control-label">Address</label>
         <div class="col-lg-10">
-            <textarea class="form-control" rows="3" id="address" name="address" placeholder="Address detail">Lot 942, Belakang Balai Polis Meranti</textarea>
+            <textarea class="form-control" rows="3" id="address" name="address" placeholder="Address detail"></textarea>
         </div>
     </div>
     <div class="form-group">
         <label for="postcode" class="col-lg-2 control-label">Postcode</label>
         <div class="col-lg-10">
-            <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Address's postcode" value="17010">
+            <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Address's postcode" value="">
         </div>
     </div>
     <div class="form-group">
         <label for="city" class="col-lg-2 control-label">City</label>
         <div class="col-lg-10">
-            <input type="text" class="form-control" id="city" name="city" placeholder="City name" value="Pasir Mas">
+            <input type="text" class="form-control" id="city" name="city" placeholder="City name" value="">
         </div>
     </div>
     <div class="form-group">
         <label for="state" class="col-lg-2 control-label">State</label>
         <div class="col-lg-10">
-            <input type="text" class="form-control" id="state" name="state" placeholder="State" value="Kelantan">
+            <input type="text" class="form-control" id="state" name="state" placeholder="State" value="">
         </div>
     </div>
     <legend style="text-align:center;"><u>Account Info</u></legend>
     <div class="form-group">
         <label for="email" class="col-lg-2 control-label">Email</label>
         <div class="col-lg-10">
-            <input type="email" class="form-control" id="email" name="email" placeholder="email" value="aiman_amirul@ymail.com">
+            <input type="email" class="form-control" id="email" name="email" placeholder="email" value="">
         </div>
     </div>
     <div class="form-group">
         <label for="pwd" class="col-lg-2 control-label">Password</label>
         <div class="col-lg-10">
-            <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password" value="12345">
+            <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password" value="">
         </div>
     </div>
     <div class="form-group">
         <label for="reenter" class="col-lg-2 control-label">Reenter Password</label>
         <div class="col-lg-10">
-            <input type="password" class="form-control" id="reenter" name="pwd_confirmation" placeholder="Enter password again" value="12345">
+            <input type="password" class="form-control" id="reenter" name="pwd_confirmation" placeholder="Enter password again" value="">
         </div>
     </div>
     <div class="form-group">

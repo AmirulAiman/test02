@@ -17,7 +17,7 @@ class CreateCompanyServicesTable extends Migration
             $table->increments('id');
             $table->integer('user_company_detail_id');
             $table->string('services');
-            $table->string('price_offered');
+            $table->string('price_offered')->nullable();
             $table->timestamps();
             
             $table->foreign('user_company_detail_id')->references('id')->on('user_company_details');

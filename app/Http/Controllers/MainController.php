@@ -14,6 +14,7 @@ use App\AddressState;
 use App\UserProfileImg;
 use App\UserCompanyDetail;
 use App\CompanyService;
+use App\UserHistory;
 
 use Carbon\Carbon;
 use Validator;
@@ -66,12 +67,19 @@ class MainController extends Controller
 
           if($curr_user){
                 //Change account state for new user -> active;
+
+                $record = new UserHistory();
+                $record->action = 'User logged in';
+                $record->record_time = Carbon::now();
+                $curr_user->UserDetails->UserHistory()->save($record);
+
                 if($curr_user->user_type != 0){
                     $activate = UserDetail::where('user_id',$curr_user->id)->first();
                     $activate->account_state = 1;
                     $activate->save();
                 }
                 if($curr_user->user_type === 1){
+                    
                     return redirect()->route('user.dashboard');
                 }else if($curr_user->user_type === 2){
                     return redirect()->route('company.dashboard');
@@ -81,7 +89,7 @@ class MainController extends Controller
 
           }else{
 
-              $msg = 'This email does not registered in the database.';
+              $msg = 'This email does not registered in the system.';
 
               return redirect()
               ->back()
@@ -97,7 +105,8 @@ class MainController extends Controller
         {
             Auth::logout();
             return redirect()
-            ->route('main.home');
+            ->route('main.home')
+            ->with('msg','Succesfully logged out.');
             
         }else{
             return redirect()
@@ -187,21 +196,6 @@ class MainController extends Controller
         $userProfileImg->profile_img = $convert;
         $userProfileImg->file_type = $fileType;
         $detail->UserProfileImg()->save($userProfileImg);
-
-        /*
-        if($address_state)
-        {
-            $address_state->UserAddress()->associate($detail);
-            $address_state->save();
-        }else
-        {
-            $address_state = new AddressState();
-            $address_state->state = $state;
-            $address_state->save();
-            $address_state->UserAddress()->associate($detail);
-            $address_state->save();
-            //$user_address->UserAddresStates()->save($address_state);
-        }*/
         
         $msg = "Register Success. Please sign to active your account.";
 
@@ -226,10 +220,10 @@ class MainController extends Controller
             'name' => 'required',
             'gender' => 'required',
             'owner_tel_no' => 'required',
-            'owner_pic' => 'present|image',
+            'owner_pic' => 'present',
             'comp_name' => 'required',
-            'comp_pic' => 'present|image',
-            'comp_email' => 'present|email',
+            'comp_pic' => 'present',
+            'comp_email' => 'present',
             'comp_tel_no' => 'required',
             'comp_service.*' => 'required',
             'address' => 'required',
@@ -314,7 +308,7 @@ class MainController extends Controller
         $company->company_name = $comp_name;
         $company->company_email = $comp_email;
         $company->company_tel_no = $comp_tel_no;
-        $company->comp_image = $comp_pic;
+        $company->comp_img = $comp_pic;
         $company->file_type = $comp_file_type;
         $detail->UserCompanyDetail()->save($company);
 

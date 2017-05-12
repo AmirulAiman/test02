@@ -8,7 +8,7 @@ class UserDetail extends Model
 {
     public function Users()
     {
-        return $this->belongsToOne('App\User','user_id');
+        return $this->belongsTo('App\User');
     }
 
     public function UserProfileImg()
@@ -29,11 +29,12 @@ class UserDetail extends Model
 
     public function UserOrders()
     {
-        return $this->hasMany('App\UserOrder');
+        return $this->hasMany('App\UserOrder','user_detail_id','id');
     }
 
-    public function UserHistories()
+    public function UserHistory()
     {
-        return $this->hasOne('App\UserHistory');
+        return $this->hasMany('App\UserHistory');
     }
+    
 }

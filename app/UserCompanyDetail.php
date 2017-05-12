@@ -11,14 +11,14 @@ class UserCompanyDetail extends Model
             return $this->belongsTo('App\UserDetail');
     }
 
+    public function UserOrders()
+    {
+        return $this->hasMany('App\UserOrder','company_detail_id','id');
+    }
+
     public function CompanyServices()
     {
         return $this->hasMany('App\CompanyService','user_company_detail_id');
-    }
-
-    public function UserCompanyOrders()
-    {
-        return $this->hasMany('App\UserCompanyOrder');
     }
 
 }

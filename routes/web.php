@@ -162,7 +162,7 @@ Route::group(['middleware' => ['web']],function(){
         'as' => 'main.signin'
     ]);
 
-    Route::post('/login/signin',[
+    Route::post('/login',[
         'uses' => 'MainController@Login',
         'as' => 'main.login'
     ]);

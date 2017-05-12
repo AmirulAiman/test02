@@ -36,6 +36,7 @@ class MainController extends Controller
     {
         return view('layouts.main.login');
     }
+    
     public function Login(Request $req)
     {
         $msg = null;
@@ -67,16 +68,17 @@ class MainController extends Controller
 
           if($curr_user){
                 //Change account state for new user -> active;
-
-                $record = new UserHistory();
-                $record->action = 'User logged in';
-                $record->record_time = Carbon::now();
-                $curr_user->UserDetails->UserHistory()->save($record);
-
+                //record the the user have looged in
                 if($curr_user->user_type != 0){
                     $activate = UserDetail::where('user_id',$curr_user->id)->first();
                     $activate->account_state = 1;
                     $activate->save();
+
+                    $record = new UserHistory();
+                    $record->action = 'User logged in';
+                    $record->record_time = Carbon::now();
+                    $curr_user->UserDetails->UserHistory()->save($record);
+
                 }
                 if($curr_user->user_type === 1){
                     

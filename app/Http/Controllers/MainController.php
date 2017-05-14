@@ -29,7 +29,9 @@ class MainController extends Controller
 
     public function CompanyList()
     {
-        return view('main.list');
+        $lists = UserCompanyDetail::paginate(5);
+
+        return view('layouts.main.list')->with(['lists' => $lists]);
     }
 
     public function LoginPage()

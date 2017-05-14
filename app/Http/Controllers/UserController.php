@@ -19,6 +19,7 @@ use App\UserCompanyOrder;
 use App\UserOrder;
 use App\UserOrderImg;
 use App\UserHistory;
+use App\OrderPayState;
 
 
 class UserController extends Controller
@@ -211,7 +212,7 @@ class UserController extends Controller
         $order->company_detail_id = 0;
         $user->UserDetails->UserOrders()->save($order);
         $comp->UserOrders()->save($order);
-        
+
         foreach($req['descriptionImg'] as $img)
         {
             $temp = file_get_contents($img);

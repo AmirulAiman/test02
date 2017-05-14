@@ -5,6 +5,9 @@
 @section('admin.userslist','active')
 
 @section('content')
+@if(Session::has('msg'))
+    <h5 class="text-center warning">{{ Session::get('msg') }}</h5>
+@endif
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-label">List of Registered Users</h3>

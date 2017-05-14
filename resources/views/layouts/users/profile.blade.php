@@ -41,12 +41,4 @@
         </div>
     </div>
 </div>
-<div class="panel panel-info">
-    <div class="panel-heading">
-        <h5 class="panel-title"></h5>
-    </div>
-    <div class="panel-body">
-        
-    </div>
-</div>
 @endsection

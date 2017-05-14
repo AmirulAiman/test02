@@ -5,6 +5,9 @@
 @section('admin.companylist','active')
 
 @section('content')
+@if(Session::has('msg'))
+    <h5 class="text-center warning">{{ Session::get('msg') }}</h5>
+@endif
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-label">List of Registered Company</h3>
@@ -45,7 +48,7 @@
                                             <div class="modal-body">
                                                <div class="media">
                                                 <div class="media-left">
-                                                @if($lists[$i]->UserDetails->UserCompanyDetail->comp_image === null)
+                                                @if($lists[$i]->UserDetails->UserCompanyDetail->comp_img === null)
                                                     <img src="{{ asset('img/store.png') }}" class="media-object" style="width:160px">
                                                 @else
                                                     <img alt="store image" src="data:image/{{ $lists[$i]->UserDetails->UserCompanyDetail->file_type }};base64,{{($lists[$i]->UserDetails->UserCompanyDetail->comp_img)}}" class="media-object" style="width:160px">

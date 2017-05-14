@@ -100,7 +100,12 @@ class AdminController extends Controller
             ->with(['msg','You need to login to continue.']);
         }
 
-        echo 'Delete : '.$id;
+        $user = User::find($id);
+        if($user)
+        {
+            $user->delete();
+        }
+        return redirect()->back()->with(['msg' => 'Account Terminated']);
     }
 
     public function edit($id)

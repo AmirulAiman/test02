@@ -5,6 +5,20 @@
 @section('user.dashboard','active')
 
 @section('content')
+<style type="text/css">
+    div.scroll{
+        overflow: auto;
+        white-space: nowrap;
+    }
+
+    div.scroll img{
+        border: 1px solid black;
+        display: inline-block;
+        color: white;
+        text-align: center;
+        text-decoration:none;
+    }
+</style>
 <div class="">
     <h4>Dashboard</h4>
     <hr>
@@ -31,7 +45,7 @@
             @foreach($orders as $order)
                 @for($i = 0; $i < count($order->UserOrders); $i++)
                 <tr style="border: solid 1px black" class="{{($order->UserOrders[$i]->done === 0 ? 'danger' : ( $order->UserOrders[$i]->done === 1 ? 'warning' : 'success')) }}">
-                    <td>{[ $i ]}</td>
+                    <td>{{$i+1}}</td>
                     <td>{{ $order->UserOrders[$i]->description }}</td>
                     <td>{{ $order->UserOrders[$i]->UserCompanyDetails->company_name }}</td>
                     <td>{{ $order->UserOrders[$i]->service_requested }}</td>
@@ -40,7 +54,7 @@
                     <td>
                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#{{$order->UserOrders[$i]->id}}">Detail</button>
                     </td>
-                    <td><a href="#" onclick="confirmed()" class="btn btn-default btn-solid {{($order->UserOrders[$i]->done === 1 ? 'disable' : '')}}">Delete</a></td>
+                    <td><a href="#" onclick="confirmed()" class="btn btn-default btn-solid {{($order->UserOrders[$i]->done !=0 ? 'disabled' : '' ) }}">Delete</a></td>
                 </tr>
                 <div id="{{$order->UserOrders[$i]->id}}" class="modal fade" role="dialog">
                     <div class="modal-dialog">
@@ -56,8 +70,8 @@
                             <h5>description : <br>{{$order->UserOrders[$i]->description}}</h5>
                             <h5>Due Date : {{date('d-M-Y', strtotime($order->UserOrders[$i]->due_date))}}</h5>
                             <h5>Image Send : </h5>
-                            <div class="row" style="height:160px;">
-                                <div class="col-lg-3">
+                            <div class="scroll" style="height:160px;">
+                                <div class="">
                                 @if(count($order->UserOrders[$i]->UserOrderImgs) > 0)
                                     @foreach($order->UserOrders[$i]->UserOrderImgs as $img)
                                         <img class="media-object" style="width:250px;" src="data:image/{{ $img->file_type }};base64,{{ ($img->order_img) }}">

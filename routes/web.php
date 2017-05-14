@@ -17,6 +17,11 @@ Route::group(['middleware' => ['web']],function(){
         'uses' => 'MainController@Home',
         'as' => 'main.home'
     ]);
+    
+    Route::get('/company-list',[
+        'uses' => 'MainController@CompanyList',
+        'as' => 'main.lists'
+    ]);
 
     Route::group(['prefix' => 'register'],function(){
 
@@ -139,8 +144,22 @@ Route::group(['middleware' => ['web']],function(){
             'as' => 'company.dashboard'
         ]);
         
+        Route::get('/request',[
+            'uses' => 'CompanyController@request',
+            'as' => 'company.request.list'
+        ]);
+        Route::get('/accept/{i}/{r}',[
+            'uses' => 'CompanyController@accept',
+            'as' => 'company.accept'
+        ]);
+
+        Route::get('/payed/{id}',[
+            'uses' =>'CompanyController@hasPayed',
+            'as' => 'company.payed'
+        ]);
+
         Route::get('/profil',[
-            'uses' => 'CompanyController@profil',
+            'uses' => 'CompanyController@profile',
             'as' => 'company.profile'
         ]);
         

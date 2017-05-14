@@ -21,6 +21,7 @@ class CreateUserOrdersTable extends Migration
             $table->string('service_requested');
             $table->date('due_date');
             $table->integer('done')->default(0);
+            $table->integer('hasPay')->default(0);
             $table->timestamps();
 
             $table->foreign('user_detail_id')->references('id')->on('user_details');

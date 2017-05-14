@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
-use App\Users;
+use App\User;
 use App\UserDetail;
 use App\UserAddress;
+use App\UserCompanyDetail;
 use App\CompanyService;
-use App\CompanyOrder;
-use App\UserCompanyOrder;
 use App\UserHistory;
+use App\UserOrder;
 
 class CompanyController extends Controller
 {
@@ -21,10 +22,12 @@ class CompanyController extends Controller
         {
             return redirect()
             ->route('main.home')
-            ->with(['msg','You need to login to continue.']);
+            ->with('msg','Your session has timed out and need to logged in again.');
         }
 
-        return view('layouts.company.dashboard');
+        $company = User::find(Auth::id());
+        $order = $company->UserDetails->UserCompanyDetail->UserOrders->where('done','!=',2);
+        return view('layouts.company.dashboard',['orders' => $order]);
     }
 
     public function profile()
@@ -35,8 +38,9 @@ class CompanyController extends Controller
             ->route('main.home')
             ->with(['msg','You need to login to continue.']);
         }
-        //show user history in profile page
-        echo 'history page';
+
+        $user = User::find(Auth::id());
+        return view('layouts.company.profile')->with('user',$user);
     }
 
     public function request()
@@ -47,18 +51,68 @@ class CompanyController extends Controller
             ->route('main.home')
             ->with(['msg','You need to login to continue.']);
         }
-        return view('layouts.company.request');
+
+        $company = User::find(Auth::id());
+        $order = $company->UserDetails->UserCompanyDetail->UserOrders()->paginate(10);
+             
+        return view('layouts.company.request',['orders' => $order]);
     }
 
-    public function record()
+    public function accept($id,$r)
     {
         if(!Auth::check())
         {
+            if(!Auth::user()->user_type === 2)
+            {
+                return redirect()
+                ->route('main.home')
+                ->with('msg','Your did not have te permission to be accessing the URL specified.');
+            }
             return redirect()
             ->route('main.home')
-            ->with(['msg','You need to login to continue.']);
+            ->with('msg','Your session has timed out and needed to log in again.');
         }
-        //show request status, payed or not
-        echo 'record page';
+
+        $user = User::find(Auth::id());
+
+        $record = new UserHistory();
+
+        $get_order = UserOrder::find($id);
+
+        if($r === '1')
+        {
+            //Accept
+            $get_order->done = 1;
+            $get_order->save();
+            $record->action = "Accept service request from".$get_order->UserDetails->name.".";
+            $record->record_time = Carbon::now();
+        }else if($r === '2')
+        {
+            //Done
+            $get_order->done = 2;
+            $get_order->save();
+            $record->action = "Mark service request from".$get_order->UserDetails->name." as Done.";
+            $record->record_time = Carbon::now();
+        }else{
+            //decline order
+            $get_order->done = 3;
+            $get_order->save();
+            $record->action = "Decline service request from".$get_order->UserDetails->name.".";
+            $record->record_time = Carbon::now();
+        }
+        $user->UserDetails->UserHistory()->save($record);
+        return redirect()->back();
+    }
+
+    public function hasPayed($id)
+    {
+        $order = UserOrder::find($id);
+
+        if($order->hasPayed === 0)
+        {
+            $order->hasPayed = 1;
+            $order->save();
+        }
+        return redirect()->back();
     }
 }

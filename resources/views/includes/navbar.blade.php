@@ -24,20 +24,20 @@
 
         @elseif(Auth::check() && Auth::user()->user_type === 2)
             <li class="@yield('company.dashboard')"><a href="{{route('company.dashboard') }}">Dashboard</a></li>
-            <li><a href="#">Customer Request</a></li>
+            <li class="@yield('company.request')"><a href="{{ route('company.request.list') }}">Customer Request</a></li>
 
         @else
-            <li><a href=#>Browse Our List of T-shirt Service Company</a></li>
+            <li><a href={{ route('main.lists')}}>Browse Our List of T-shirt Service Company</a></li>
         @endif
       </ul>
       <ul class="nav navbar-nav navbar-right">
       @if(Auth::check())
         @if(Auth::user()->user_type === 1)
-            <li><a href="{{ route('user.profile') }}"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+            <li class="@yield('user.profile')"><a href="{{ route('user.profile') }}"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
         @elseif(Auth::user()->user_type === 2)
-            <li><a href="{{ route('company.profile') }}"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+            <li class="@yield('company.profile')"><a href="{{ route('company.profile') }}"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
         @else
-            <li><a href="{{ route('admin.profile') }}"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+            <li class="@yield('admin.profile')"><a href="{{ route('admin.profile') }}"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
         @endif
         <li><a href="{{ route('main.logout') }}"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
       @else

@@ -2,7 +2,7 @@
 
 @section('title','Company Available')
 
-@section('list','active')
+@section('main.company-list','active')
 
 @section('content')
     @if(count($lists) > 0)

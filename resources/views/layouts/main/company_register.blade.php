@@ -15,7 +15,7 @@
     </div>
 @endif
   <fieldset>
-    <legend style="text-align:center;"><u>Register as T-shirt Serrvice Provider</u></legend>
+    <legend style="text-align:center;"><u>Register as T-shirt Service Provider</u></legend>
     <div class="form-group">
       <label for="name" class="col-lg-2 control-label">Owner</label>
       <div class="col-lg-10">

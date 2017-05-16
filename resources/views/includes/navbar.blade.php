@@ -27,7 +27,7 @@
             <li class="@yield('company.request')"><a href="{{ route('company.request.list') }}">Customer Request</a></li>
 
         @else
-            <li><a href={{ route('main.lists')}}>Browse Our List of T-shirt Service Company</a></li>
+            <li class="@yield('main.company-list')"><a href={{ route('main.lists')}}>Browse Our List of T-shirt Service Company</a></li>
         @endif
       </ul>
       <ul class="nav navbar-nav navbar-right">

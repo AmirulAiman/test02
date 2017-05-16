@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>OverHere | @yield('title') </title>
+        <title>TO-Sytem | @yield('title') </title>
         <!-- Fonts -->
         <link href="{{  asset('css/app.css') }}" rel="stylesheet" type="text/css">
         <link href="{{  asset('css/animate.css') }}" rel="stylesheet" type="text/css">

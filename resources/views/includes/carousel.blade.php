@@ -4,20 +4,25 @@
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="1"></li>
     <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      <img src="la.jpg" alt="Los Angeles">
+      <img src="{{ asset('img/car/1.jpg') }}" width="100%">
     </div>
 
     <div class="item">
-      <img src="chicago.jpg" alt="Chicago">
+      <img src="{{ asset('img/car/2.jpg')}}" width="100%">
     </div>
 
     <div class="item">
-      <img src="ny.jpg" alt="New York">
+      <img src="{{ asset('img/car/1.jpg') }}" width="100%">
+    </div>
+
+    <div class="item">
+      <img src="{{ asset('img/car/2.jpg') }}" width="100%">
     </div>
   </div>
 

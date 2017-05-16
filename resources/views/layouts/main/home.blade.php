@@ -43,4 +43,11 @@
         </div>
     </div>
 </div>
+@if(!Auth::check())
+<div class="panel panel-primary">
+    <div class="panel-footer">
+        <h4 class="text-center">Interested, Sign up now, as <a href="{{route('main.signup.company') }}">T-Shirt Printing Provider</a> or <a href="{{ route('main.signup.user') }}">User</a></h4>
+    </div>
+</div>
+@endif
 @endsection

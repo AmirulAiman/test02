@@ -17,4 +17,13 @@ class User extends Model implements \Illuminate\Contracts\Auth\Authenticatable
     {
         return $this->hasOne('App\UserDetail');
     }
+
+    public function Carousel()
+    {
+        if(Auth::user()->user_type === 0)
+        {
+            return $this->hasMany('App\CarouselImg');
+        }
+        return null;
+    }
 }

@@ -103,6 +103,14 @@ class AdminController extends Controller
         $user = User::find($id);
         if($user)
         {
+            if($user->UserDetails)
+            {
+                if($user->UserDetails->UserCompanyDetail)
+                {
+                    $user->UserDetails->UserCompanyDetail->delete();
+                }
+                $user->UserDetails->delete();
+            }
             $user->delete();
         }
         return redirect()->back()->with(['msg' => 'Account Terminated']);
@@ -161,5 +169,61 @@ class AdminController extends Controller
 
         return redirect()
         ->route('admin.profile',['msg' => 'Edit success.','done' => true ]);
+    }
+
+    public function caraousel()
+    {
+        if(!Auth::check())
+        {
+            return redirect()
+            ->route('main.home')
+            ->with(['msg','You need to login to continue.']);
+        }
+
+        $imgs = CarouselImg::all();
+        
+        return view('layouts.admin.edit_caraousel')->with('imgs',$imgs);
+    }
+
+    public function caraousel_save(Request $req)
+    { 
+        if(!Auth::check())
+        {
+            return redirect()
+            ->route('main.home')
+            ->with(['msg','You need to login to continue.']);
+        }
+
+        $validate = Validator::make($req, [
+            'img.*' => 'present'
+        ]);
+
+        if($validate->fails())
+        {
+            return redirect()->back()->withErrors($validate);
+        }
+
+        $user = User::find(Auth::id());
+        if($user->user_type != 0)
+            echo '<script>console.log("Error!")</script>';
+
+        foreach($req as $input)
+        {
+            $img = new CarouselImg();
+            if($input->hasFile('image')){
+                
+                $file = $input['image'];
+                $fileName = $file->getClientOriginalName();
+                $destination = public_path().'/img/car';
+                $file->move($destination,$fileName);
+                
+                $img->file_name = $fileName;
+                $img->directory = $destination;
+                
+                $user->Carousel()->save($img);
+            }
+        }
+
+        return redirect()->back()->with('msg','Save Success');
     }
 }

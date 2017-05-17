@@ -85,6 +85,15 @@ Route::group(['middleware' => ['web']],function(){
             'as' => 'admin.save'
         ]);
            
+        Route::get('/carausel',[
+            'uses' => 'AdminController@carousel',
+            'as' => 'admin.caraousel'
+        ]);
+
+        Route::post('/caraousle/save',[
+            'uses' => 'AdminController@carausel_save',
+            'as' => 'admin.caraousel.save'
+        ]);
 
     });
     

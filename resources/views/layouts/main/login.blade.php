@@ -18,9 +18,12 @@
             @if(count($errors) > 0)
                 <ul>
                     @foreach($errors as $error)
-                        <li>{{ $error }}</li>
+                        <li class="text-warning">{{ $error }}</li>
                     @endforeach
                 </ul>
+            @endif
+            @if(Session::has('msg'))
+                <h5 class="text-warning">{{ Session::get('msg') }}</h5>
             @endif
             <form class="form-horizontal" action="{{ route('main.login') }}" method="post">
                 <div class="form-group">

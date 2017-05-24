@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Events\LoginEvent;
 use Illuminate\Support\Facades\Event;
 
 use App\User;
@@ -18,8 +17,7 @@ use App\UserHistory;
 
 use Carbon\Carbon;
 use Validator;
-use Hash;
-
+use Session;
 class MainController extends Controller
 {
     public function Home()
@@ -62,7 +60,8 @@ class MainController extends Controller
             $msg = 'Failed to login';
             return redirect()
             ->back()
-            ->with(['msg' => $msg]);
+            ->with('msg',$msg)
+            ->response(['msg' => $msg]);
 
         }else{
 
@@ -80,24 +79,22 @@ class MainController extends Controller
                     $record->action = 'User logged in';
                     $record->record_time = Carbon::now();
                     $curr_user->UserDetails->UserHistory()->save($record);
-
                 }
                 if($curr_user->user_type === 1){
-                    
                     return redirect()->route('user.dashboard');
                 }else if($curr_user->user_type === 2){
                     return redirect()->route('company.dashboard');
                 }else{
                     return redirect()->route('admin.dashboard');
                 }
-
           }else{
 
               $msg = 'This email does not registered in the system.';
 
               return redirect()
               ->back()
-              ->with(['msg' => $msg]);
+              ->with('msg',$msg)
+              ->response('logged in');
           }
 
         }
@@ -108,8 +105,9 @@ class MainController extends Controller
         if(Auth::check())
         {
             Auth::logout();
+            Session::flush();
             return redirect()
-            ->route('main.home')
+            ->route('main.signin')
             ->with('msg','Succesfully logged out.');
             
         }else{
@@ -176,7 +174,6 @@ class MainController extends Controller
         $users = new User();
         $detail = new UserDetail();
         $user_address = new UserAddress();
-        //$address_state = AddressState::where('state',$state)->first();
         $userProfileImg = new UserProfileImg();
 
         $users->email = $email;

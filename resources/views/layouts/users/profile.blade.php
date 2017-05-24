@@ -24,7 +24,7 @@
             </div>
             <div class="media-body">
                 <div class="col-md-offset-10">
-                    <a href="{{ route('user.edit',['id' => $profile->id]) }}" type="button" class="btn btn-warning">Edit</a>
+                    <!--<a href="{{ route('user.edit',['id' => $profile->id]) }}" type="button" class="btn btn-warning">Edit</a>-->
                 </div>
                 <h4 class="media-heading">{{ $profile->UserDetails->name }}</h4>
                 <div class="">
